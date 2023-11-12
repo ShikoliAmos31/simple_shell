@@ -12,6 +12,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <errno.h>
 
 #define MAX_INPUT_SIZE 2024
 #define MAX_ARG_SIZE 64
