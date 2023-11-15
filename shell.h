@@ -60,4 +60,7 @@ void handle_execution_error(ShellInfo *info);
 void run_non_interactive_mode(ShellInfo *info);
 void print_to_console(char *message);
 void print_error_message(int error_code, ShellInfo *info);
+int command_handler(int ac, char **av);
+int env_built_in(char **env)
+
 #endif  /* SHELL_H */
