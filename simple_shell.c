@@ -33,8 +33,8 @@ int main(void)
 void read_line(char *line, size_t size)
 {
 	static char buffer[MAX_LINE_SIZE];
-	static size_t buffer_index = 0;
-	static ssize_t chars_read = 0;
+	static size_t buffer_index;
+	static ssize_t chars_read;
 
 	size_t line_length = 0;
 
