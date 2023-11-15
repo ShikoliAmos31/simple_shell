@@ -1,15 +1,6 @@
 #include "shell.h"
 
 /**
- * print_error_message - Print an error message to stderr
- * @message: The error message to print
- */
-static void print_error_message(const char *message)
-{
-	write(STDERR_FILENO, message, strlen(message));
-}
-
-/**
  * handle_child_process_status - Handle the status of the child process
  * @status: The status of the child process
  */
@@ -18,7 +9,6 @@ static void handle_child_process_status(int status)
 	if (WIFEXITED(status))
 	{
 		char status_msg[50];
-
 		int len = snprintf(status_msg, sizeof(status_msg),
 				"Child process exited with status %d\n", WEXITSTATUS(status));
 
@@ -45,7 +35,7 @@ static void run_child_process(char **command)
 
 	if (child_pid == -1)
 	{
-		print_error_message("fork error\n");
+		write(STDERR_FILENO, "fork error\n", strlen("fork error\n"));
 		exit(EXIT_FAILURE);
 	}
 	if (child_pid == 0)
@@ -53,13 +43,13 @@ static void run_child_process(char **command)
 		/* Child process */
 		if (execve(command[0], command, NULL) == -1)
 		{
-			print_error_message("execve error\n");
+			write(STDERR_FILENO, "execve error\n", strlen("execve error\n"));
 			_exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
-		 /* Parent process */
+		/* Parent process */
 		int status;
 
 		wait(&status);
@@ -77,7 +67,8 @@ int command_handler(int ac, char **av)
 {
 	if (ac < 2)
 	{
-		print_error_message("Usage: <command> [arguments...]\n");
+		write(STDERR_FILENO, "Usage: <command> [arguments...]\n",
+				strlen("Usage: <command> [arguments...]\n"));
 		return (1);
 	}
 	/* Extracting command and arguments */
@@ -85,6 +76,5 @@ int command_handler(int ac, char **av)
 
 	/* Forking and executing the command */
 	run_child_process(command);
-
 	return (0);
 }
