@@ -65,6 +65,9 @@ static void run_child_process(char **command)
  */
 int command_handler(int ac, char **av)
 {
+
+	char **command;
+
 	if (ac < 2)
 	{
 		write(STDERR_FILENO, "Usage: <command> [arguments...]\n",
@@ -72,7 +75,7 @@ int command_handler(int ac, char **av)
 		return (1);
 	}
 	/* Extracting command and arguments */
-	char **command = &av[1];
+	command = &av[1];
 
 	/* Forking and executing the command */
 	run_child_process(command);
