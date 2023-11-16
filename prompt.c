@@ -8,7 +8,8 @@
 
 void display_prompt(char *prompt, ShellInfo *info)
 {
-	print_to_console(prompt);
+	int error_code;
+	int input_length;
 
 	while (1)
 	{
