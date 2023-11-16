@@ -16,6 +16,7 @@
 #define MAX_INPUT_SIZE 2024
 #define MAX_ARG_SIZE 64
 #define PROMPT "haf and Amos cmd$"
+#define MAX_LINE_SIZE 100
 
 extern char **environ;
 
@@ -26,7 +27,8 @@ extern char **environ;
  * @file _descriptor: Input file descriptor.
  * @out_fd: Output file desccriptor.
  * @next: Pointer to the next xommand in the linked list.
- * @alias: Field for storing aliases.
+ * @alias: Field for storing aliases
+ * @user_input: user input of the shell
  */
 typedef struct ShellInfo
 {
@@ -36,8 +38,16 @@ typedef struct ShellInfo
 	int out_fd;
 	struct command *next;
 	char *alias;
-}
-ShellInfo;
+	char *user_input;
+} ShellInfo;
+
+void print_to_console(char *output);
+int get_user_input(ShellInfo *info);
+void execute_command(ShellInfo *info);
+/* Declaration for a function to initialize, clean up the ShellInfo structure */
+
+ShellInfo* setup_shell_info(void);
+void cleanup_shell_info(ShellInfo *info);
 
 /**
  * struct builtin_command - Separate structure for built-in commands.
@@ -61,6 +71,6 @@ void run_non_interactive_mode(ShellInfo *info);
 void print_to_console(char *message);
 void print_error_message(int error_code, ShellInfo *info);
 int command_handler(int ac, char **av);
-int env_built_in(char **env)
+void read_line(char *line, size_t size);
 
 #endif  /* SHELL_H */

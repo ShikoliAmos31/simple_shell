@@ -22,4 +22,3 @@ int env_built_in(char **env)
 	}
 	return (0);
 }
-

@@ -5,20 +5,18 @@
  */
 int main(void)
 {
+	char line[MAX_LINE_SIZE];
+	char prompt[] = "You entered: ";
+	char newline = '\n';
+
 	while (1)
 	{
-		char line[MAX_LINE_SIZE];
-
 		read_line(line, MAX_LINE_SIZE);
 
 		if (line[0] == '\0')
 		{
 			continue;
 		}
-
-		char prompt[] = "You entered: ";
-		char newline = '\n';
-
 		write(STDOUT_FILENO, prompt, sizeof(prompt) - 1);
 		write(STDOUT_FILENO, line, strlen(line));
 		write(STDOUT_FILENO, &newline, 1);
@@ -33,10 +31,11 @@ int main(void)
 void read_line(char *line, size_t size)
 {
 	static char buffer[MAX_LINE_SIZE];
-	static size_t buffer_index;
+	static ssize_t buffer_index;
 	static ssize_t chars_read;
 
 	size_t line_length = 0;
+	char current_char;
 
 	while (1)
 	{
@@ -56,7 +55,7 @@ void read_line(char *line, size_t size)
 			}
 			buffer_index = 0;
 		}
-		char current_char = buffer[buffer_index++];
+		current_char = buffer[buffer_index++];
 
 		if (current_char == '\n' || current_char == '\0')
 		{

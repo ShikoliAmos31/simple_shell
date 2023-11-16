@@ -23,7 +23,7 @@ int get_user_input(ShellInfo *info)
 		return (EOF);
 	}
 
-	info->user_input[strcspn(info->user_input, "\n")] = "\O";
+	info->user_input[strcspn(info->user_input, "\n")] = '\0';
 
 	return (strlen(info->user_input));
 }
