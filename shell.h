@@ -48,7 +48,6 @@ void execute_command(ShellInfo *info);
 
 ShellInfo* setup_shell_info(void);
 void cleanup_shell_info(ShellInfo *info);
-
 /**
  * struct builtin_command - Separate structure for built-in commands.
  * @name: The name of the built-in command.
@@ -72,5 +71,4 @@ void print_to_console(char *message);
 void print_error_message(int error_code, ShellInfo *info);
 int command_handler(int ac, char **av);
 void read_line(char *line, size_t size);
-
 #endif  /* SHELL_H */

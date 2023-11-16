@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * get_user_input -  Get iser input from te console
  * @info: Pointer to ShellInfo structure
@@ -8,7 +7,7 @@
 
 int get_user_input(ShellInfo *info)
 {
-	print_to_console(PROMPT);
+	write(STDOUT_FILENO, PROMPT, strlen(PROMPT));
 	info->user_input =  malloc(MAX_INPUT_SIZE);
 
 	if (!info->user_input)
