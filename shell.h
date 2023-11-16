@@ -16,7 +16,7 @@
 #define MAX_INPUT_SIZE 2024
 #define MAX_ARG_SIZE 64
 #define PROMPT "haf and Amos cmd$"
-#define MAX_LINE_SIZE 100
+#define MAX_LINE_SIZE 1024
 
 extern char **environ;
 
