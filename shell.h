@@ -63,7 +63,6 @@ typedef struct builtin_command
 /* Function prototypes */
 
 void display_prompt(char *prompt, ShellInfo *info);
-int get_user_input(ShellInfo *info);
 void execute_command(ShellInfo *info);
 void handle_execution_error(ShellInfo *info);
 void run_non_interactive_mode(ShellInfo *info);

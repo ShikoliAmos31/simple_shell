@@ -13,7 +13,7 @@ void display_prompt(char *prompt, ShellInfo *info)
 
 	while (1)
 	{
-		print_to_console(prompt);
+		write(STDOUT_FILENO, prompt, strlen(prompt));
 		error_code = input_length = get_user_input(info);
 
 		if (error_code == EOF)
