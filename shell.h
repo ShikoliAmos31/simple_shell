@@ -63,11 +63,11 @@ typedef struct builtin_command
 /* Function prototypes */
 
 void display_prompt(char *prompt, ShellInfo *info);
-void execute_command(ShellInfo *info);
 void handle_execution_error(ShellInfo *info);
 void run_non_interactive_mode(ShellInfo *info);
 void print_to_console(char *message);
 void print_error_message(int error_code, ShellInfo *info);
 int command_handler(int ac, char **av);
 void read_line(char *line, size_t size);
+void exit_command(void);
 #endif  /* SHELL_H */
