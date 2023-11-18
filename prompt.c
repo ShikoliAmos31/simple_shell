@@ -15,7 +15,7 @@ void display_prompt(char *prompt, ShellInfo *info)
 		print_to_console(prompt);
 		error_code = input_length = get_user_input(info);
 
-		if (error_code == EOD)
+		if (error_code == EOF)
 		{
 			free(info->user_input);
 			exit(0);
